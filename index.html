@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yoss_visual — Creative Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'DM Sans',Arial,sans-serif;
+  background:#080808;
+  color:#f5f5f5;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  width:380px;
+  height:380px;
+  right:-160px;
+  top:80px;
+  background:#8f6cff;
+  filter:blur(130px);
+  opacity:.13;
+  pointer-events:none;
+  z-index:-1;
+}
+
+a{
+  color:inherit;
+}
+
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+  padding:18px 0;
+  background:rgba(8,8,8,.82);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid #1c1c1c;
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-family:'Space Grotesk',Arial,sans-serif;
+  font-size:21px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.logo span{
+  color:#8f6cff;
+}
+
+.menu{
+  display:flex;
+  gap:26px;
+}
+
+.menu a{
+  text-decoration:none;
+  color:#999;
+  font-size:14px;
+  transition:.25s;
+}
+
+.menu a:hover{
+  color:#fff;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding-top:90px;
+}
+
+.hero-content{
+  max-width:850px;
+}
+
+.eyebrow{
+  color:#8f6cff;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.hero h1{
+  font-family:'Space Grotesk',Arial,sans-serif;
+  font-size:clamp(58px,10vw,110px);
+  line-height:.92;
+  margin:18px 0 25px;
+  letter-spacing:-4px;
+}
+
+.hero h1 span{
+  color:transparent;
+  -webkit-text-stroke:1px #8f6cff;
+}
+
+.hero p{
+  max-width:650px;
+  color:#999;
+  font-size:18px;
+}
+
+.status{
+  display:inline-block;
+  margin-top:28px;
+  padding:9px 15px;
+  border:1px solid #29202f;
+  border-radius:30px;
+  color:#aaa;
+  font-size:13px;
+}
+
+/* SECTION */
+section{
+  padding:100px 0;
+}
+
+.label{
+  color:#8f6cff;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.title{
+  font-family:'Space Grotesk',Arial,sans-serif;
+  font-size:48px;
+  line-height:1;
+  margin-bottom:40px;
+}
+
+/* ABOUT */
+.about-text{
+  max-width:760px;
+  color:#999;
+  font-size:18px;
+}
+
+/* SERVICES */
+.services{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.service{
+  padding:28px;
+  background:#101010;
+  border:1px solid #202020;
+  border-radius:18px;
+  transition:.3s;
+}
+
+.service:hover{
+  border-color:#8f6cff;
+  transform:translateY(-4px);
+}
+
+.service h3{
+  font-family:'Space Grotesk',Arial,sans-serif;
+  margin-bottom:7px;
+}
+
+.service p{
+  color:#888;
+}
+
+/* PORTFOLIO */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.card{
+  background:#101010;
+  border:1px solid #202020;
+  border-radius:18px;
+  overflow:hidden;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#8f6cff;
+}
+
+.card img{
+  width:100%;
+  height:300px;
+  display:block;
+  object-fit:cover;
+  background:#151515;
+}
+
+.card-info{
+  padding:22px;
+}
+
+.card-info h3{
+  font-family:'Space Grotesk',Arial,sans-serif;
+  font-size:22px;
+  margin-bottom:6px;
+}
+
+.card-info p{
+  color:#888;
+  font-size:14px;
+}
+
+/* HARGA */
+.price-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.price-card{
+  background:#101010;
+  border:1px solid #202020;
+  border-radius:18px;
+  padding:28px;
+  transition:.3s;
+}
+
+.price-card:hover{
+  transform:translateY(-5px);
+  border-color:#8f6cff;
+}
+
+.price-card h3{
+  font-family:'Space Grotesk',Arial,sans-serif;
+  font-size:23px;
+  margin-bottom:6px;
+}
+
+.price-desc{
+  color:#888;
+  font-size:14px;
+  margin-bottom:18px;
+}
+
+.price{
+  font-family:'Space Grotesk',Arial,sans-serif;
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+.price-list{
+  list-style:none;
+  color:#aaa;
+  font-size:14px;
+  margin-bottom:22px;
+}
+
+.price-list li{
+  padding:8px 0;
+  border-bottom:1px solid #1f1f1f;
+}
+
+.price-list li:last-child{
+  border-bottom:none;
+}
+
+.price-btn{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  padding:11px;
+  border:1px solid #333;
+  border-radius:12px;
+  transition:.25s;
+}
+
+.price-btn:hover{
+  background:#fff;
+  color:#000;
+}
+
+/* CONTACT */
+.contact-box{
+  padding:40px;
+  background:#101010;
+  border:1px solid #222;
+  border-radius:22px;
+}
+
+.contact-box p{
+  color:#999;
+  margin-bottom:24px;
+}
+
+.socials{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.social{
+  text-decoration:none;
+  padding:11px 18px;
+  border:1px solid #333;
+  border-radius:30px;
+  transition:.25s;
+}
+
+.social:hover{
+  background:#fff;
+  color:#000;
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid #1c1c1c;
+  padding:30px 0;
+  color:#666;
+  font-size:13px;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+  .menu{
+    gap:10px;
+  }
+
+  .menu a{
+    font-size:10px;
+  }
+
+  .hero h1{
+    font-size:58px;
+    letter-spacing:-3px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  section{
+    padding:75px 0;
+  }
+
+  .title{
+    font-size:38px;
+  }
+
+  .services,
+  .portfolio-grid,
+  .price-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card img{
+    height:230px;
+  }
+
+  .contact-box{
+    padding:28px;
+  }
+
+  .price-card{
+    padding:24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container nav">
+
+    <a href="#" class="logo">
+      yoss<span>_visual</span>
+    </a>
+
+    <div class="menu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Works</a>
+      <a href="#harga">Harga</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-content">
+
+    <div class="eyebrow">
+      AVAILABLE FOR CREATIVE PROJECTS
+    </div>
+
+    <h1>
+      Yosua<br>
+      <span>Visual Creator.</span>
+    </h1>
+
+    <p>
+      Pelajar DKV yang tertarik dengan visual, photography,
+      graphic design, dan video editing.
+    </p>
+
+    <div class="status">
+      Based in Indonesia • yoss_visual
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+
+    <div class="label">01 — ABOUT ME</div>
+
+    <h2 class="title">
+      About.
+    </h2>
+
+    <p class="about-text">
+      Saya Yosua, siswa DKV yang senang mengembangkan ide
+      menjadi karya visual. Saya tertarik pada graphic design,
+      photography, video editing, visual branding, dan content design.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+
+    <div class="label">02 — WHAT I DO</div>
+
+    <h2 class="title">
+      Services.
+    </h2>
+
+    <div class="services">
+
+      <div class="service">
+        <h3>Design</h3>
+        <p>
+          Poster, social media design, logo,
+          dan berbagai kebutuhan visual.
+        </p>
+      </div>
+
+      <div class="service">
+        <h3>Photography</h3>
+        <p>
+          Dokumentasi dan pengambilan foto
+          untuk kebutuhan visual.
+        </p>
+      </div>
+
+      <div class="service">
+        <h3>Video Editing</h3>
+        <p>
+          Editing video untuk konten, reels,
+          dokumentasi, dan media sosial.
+        </p>
+      </div>
+
+      <div class="service">
+        <h3>Visual Branding</h3>
+        <p>
+          Membuat tampilan visual yang
+          konsisten untuk sebuah brand.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- HARGA -->
+<section id="harga">
+  <div class="container">
+
+    <div class="label">03 — PRICE LIST</div>
+
+    <h2 class="title">
+      Harga.
+    </h2>
+
+    <div class="price-grid">
+
+      <!-- DESAIN FEED -->
+      <div class="price-card">
+
+        <h3>Desain Feed</h3>
+
+        <p class="price-desc">
+          Desain Instagram / social media
+        </p>
+
+        <div class="price">
+          Rp25K
+        </div>
+
+        <ul class="price-list">
+          <li>✓ 1 desain feed</li>
+          <li>✓ File JPG / PNG</li>
+          <li>✓ Maks. 2x revisi</li>
+        </ul>
+
+        <a
+          href="https://wa.me/6282246933133"
+          target="_blank"
+          class="price-btn">
+          Order ↗
+        </a>
+
+      </div>
+
+
+      <!-- POSTER -->
+      <div class="price-card">
+
+        <h3>Poster</h3>
+
+        <p class="price-desc">
+          Poster digital untuk promosi / event
+        </p>
+
+        <div class="price">
+          Rp35K
+        </div>
+
+        <ul class="price-list">
+          <li>✓ 1 desain poster</li>
+          <li>✓ File JPG / PNG</li>
+          <li>✓ Maks. 2x revisi</li>
+        </ul>
+
+        <a
+          href="https://wa.me/6282246933133"
+          target="_blank"
+          class="price-btn">
+          Order ↗
+        </a>
+
+      </div>
+
+
+      <!-- LOGO -->
+      <div class="price-card">
+
+        <h3>Logo</h3>
+
+        <p class="price-desc">
+          Logo sederhana untuk kebutuhan brand
+        </p>
+
+        <div class="price">
+          Rp75K
+        </div>
+
+        <ul class="price-list">
+          <li>✓ 1 konsep logo</li>
+          <li>✓ File PNG</li>
+          <li>✓ Maks. 2x revisi</li>
+        </ul>
+
+        <a
+          href="https://wa.me/6282246933133"
+          target="_blank"
+          class="price-btn">
+          Order ↗
+        </a>
+
+      </div>
+
+
+      <!-- VIDEO EDITING -->
+      <div class="price-card">
+
+        <h3>Video Editing</h3>
+
+        <p class="price-desc">
+          Editing video untuk social media
+        </p>
+
+        <div class="price">
+          Rp50K
+        </div>
+
+        <ul class="price-list">
+          <li>✓ Maks. 60 detik</li>
+          <li>✓ Basic cutting & transition</li>
+          <li>✓ Maks. 2x revisi</li>
+        </ul>
+
+        <a
+          href="https://wa.me/6282246933133"
+          target="_blank"
+          class="price-btn">
+          Order ↗
+        </a>
+
+      </div>
+
+
+      <!-- PHOTOGRAPHY -->
+      <div class="price-card">
+
+        <h3>Photography</h3>
+
+        <p class="price-desc">
+          Dokumentasi foto sederhana
+        </p>
+
+        <div class="price">
+          Rp100K
+        </div>
+
+        <ul class="price-list">
+          <li>✓ 1 sesi foto</li>
+          <li>✓ 10 foto pilihan</li>
+          <li>✓ Basic editing</li>
+        </ul>
+
+        <a
+          href="https://wa.me/6282246933133"
+          target="_blank"
+          class="price-btn">
+          Order ↗
+        </a>
+
+      </div>
+
+
+      <!-- CUSTOM -->
+      <div class="price-card">
+
+        <h3>Custom</h3>
+
+        <p class="price-desc">
+          Kebutuhan desain / editing lainnya
+        </p>
+
+        <div class="price">
+          Custom
+        </div>
+
+        <ul class="price-list">
+          <li>✓ Request sesuai kebutuhan</li>
+          <li>✓ Bisa diskusi konsep</li>
+          <li>✓ Harga menyesuaikan project</li>
+        </ul>
+
+        <a
+          href="https://wa.me/6282246933133"
+          target="_blank"
+          class="price-btn">
+          Tanya Harga ↗
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+
+    <div class="label">04 — MY WORKS</div>
+
+    <h2 class="title">
+      Portfolio.
+    </h2>
+
+    <div class="portfolio-grid">
+
+      <article class="card">
+
+        <img
+          src="portfolio1.jpg"
+          alt="Photography">
+
+        <div class="card-info">
+
+          <h3>
+            Photography
+          </h3>
+
+          <p>
+            Foto dokumentasi dan eksplorasi
+            visual untuk menangkap suasana.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="card">
+
+        <img
+          src="portfolio2.jpg"
+          alt="Graphic Design">
+
+        <div class="card-info">
+
+          <h3>
+            Graphic Design
+          </h3>
+
+          <p>
+            Desain logo dan identitas visual
+            untuk kebutuhan brand.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="card">
+
+        <img
+          src="portfolio3.jpg"
+          alt="Video Editing">
+
+        <div class="card-info">
+
+          <h3>
+            Video Editing
+          </h3>
+
+          <p>
+            Visual editing dan konten video
+            dengan pendekatan kreatif.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="card">
+
+        <img
+          src="portfolio4.jpg"
+          alt="Web Design">
+
+        <div class="card-info">
+
+          <h3>
+            Web Design
+          </h3>
+
+          <p>
+            Konsep dan tampilan website
+            sederhana yang modern dan responsif.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+
+    <div class="label">
+      05 — GET IN TOUCH
+    </div>
+
+    <h2 class="title">
+      Let's work together.
+    </h2>
+
+    <div class="contact-box">
+
+      <p>
+        Punya project atau ingin berkolaborasi?
+        Hubungi saya melalui sosial media.
+      </p>
+
+      <div class="socials">
+
+        <a
+          href="https://www.instagram.com/yoss_visual/"
+          target="_blank"
+          class="social">
+          Instagram ↗
+        </a>
+
+        <a
+          href="https://wa.me/6282246933133"
+          target="_blank"
+          class="social">
+          WhatsApp ↗
+        </a>
+
+        <a
+          href="https://www.tiktok.com/@yoss_visual"
+          target="_blank"
+          class="social">
+          TikTok ↗
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    © 2026 yoss_visual — Yosua.
+  </div>
+</footer>
+
+</body>
+</html>
